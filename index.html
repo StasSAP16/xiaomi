@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 27 шаг подключаем скаченные файлы css-->
+    <link rel="stylesheet" href="css/slick.css">
+    <!-- 27 шаг подключаем скаченные файлы css style.css должен быть последним-->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -33,6 +36,7 @@
             </div>
         </div>
     </header>
+    <!-- часть 2 Пишу нумерованные комментарии в html -->
     <section class="bike">
         <div class="container">
             <div class="bike__inner">
@@ -52,34 +56,47 @@
                 </div>
                 <!-- Картинки бывают: Векторные (имеют формат SVG),состоит из прямых косых линий и Растровые jpg/jpeg/pnj(состоит из кучи мелких пикселей 
                 и объединены в одну большую фото) минусы растрового - при увеличении и уменьшении портится качество. У jpg нет прозрачности!-->
-                <div class="bike__column">
+                <div class="bike__column bike__column-slider">
                     <div class="bike-slider">
                         <img class="bike-slider__item" src="images/bike-1.jpg" alt="">
                         <img class="bike-slider__item" src="images/bike-2.jpg" alt="">
                         <img class="bike-slider__item" src="images/bike-3.jpg" alt="">
                         <img class="bike-slider__item" src="images/bike-4.jpg" alt="">
                     </div>
+                    <!-- 49 шаг дабавили span и класс bike__list-num" и bike__list-text-->
                     <ul class="bike__list">
                         <li class="bike__list-item">
-                            до 100 км
-                            <span>Запас хода</span>
+                            <span class="bike__list-num">до 100 км</span>
+                            <span class="bike__list-text">Запас хода</span>
                         </li>
                         <li class="bike__list-item">
-                            25 км/ч
-                            <span>Макс скорость</span>
+                            <span class="bike__list-num">25 км/ч</span>
+                            <span class="bike__list-text">Макс скорость</span>
                         </li>
                         <li class="bike__list-item">
-                            3 режима езды
-                            <span>механический, гибридный, электрический</span>
+                            <span class="bike__list-num">3 режима езды</span>
+                            <span class="bike__list-text">механический, гибридный, электрический</span>
                         </li>
                         <li class="bike__list-item">
-                            25 кг
-                            <span>вес</span>
+                            <span class="bike__list-num">25 кг</span>
+                            <span class="bike__list-text">вес</span>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
+     <!-- часть 2 Пишу нумерованные комментарии в html -->
+     <!-- шаг 23) скрипты подключаются внизу тк они ресурсоемкие. Сначала загружается контент потом скрипты. И jquery должен быть первым!-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+     <!-- шаг 23) -->
+     <!-- шаг 24 создаем доп папку для нашего скрипта со слайдером JS->main.js -->
+     <!-- шаг 25 подключаем файл -->
+     <!-- шаг 27 подключаем js файл jquery должен быть первым-->
+     <script src="js/slick.min.js"></script>
+     <!-- шаг 27 подключаем js файл  jquery должен быть первым-->
+     <script src="js/main.js"></script>
+     <!-- шаг 25 подключаем файл -->
+     <!-- 26 шаг скачиваем папку slick -> get it now -> DowNow d gfgre c css добавим файл slick.css в JS файл slick.min.js -->
 </body>
 </html>
