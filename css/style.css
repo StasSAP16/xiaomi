@@ -1,242 +1,261 @@
 /* *обращение ко всем тегам. *::after *::before - обращение к псевдоо элементам*/
 *,
-*::after
-*::before
-{
-    box-sizing: border-box;
+*::after *::before {
+  box-sizing: border-box;
 }
 
-ul{
-    margin: 0;
-    /* убираем маркеры - кружки жиртые напротив текста */
-    list-style: none;
+/* делаем мягкий скролл при нажатии на ссылки */
+html{
+    /* плохо для сео поэтому можно это сделать скриптом с сайта
+    https://webcomplex.com.ua/jquery/plavnyj-skroll-posle-nazhatiya-na-yakornuyu-ssylku.html*/
+    /* копируем в файл main.js */
+    /* scroll-behavior: smooth; */
+}
+
+ul {
+  margin: 0;
+  /* убираем маркеры - кружки жиртые напротив текста */
+  list-style: none;
+  /* убираем у ul отступы слева (иначе там был паддинг 40)*/
+  padding: 0;
 }
 /* так же сделаем общее правило для всех li а именно уберем боковой левый паддинг */
-li{
-    padding-left: 0;
+li {
+  padding-left: 0;
 }
 
 /* убираем подчеркивание у ссылок */
-a{
-    text-decoration: none;
-    /* обычно все ссылки берут цвет у родителя от хедера. Сделаем это такой командой inherit;(тк если просто задать цвет ссылкам он нез задастся 
+a {
+  text-decoration: none;
+  /* обычно все ссылки берут цвет у родителя от хедера. Сделаем это такой командой inherit;(тк если просто задать цвет ссылкам он нез задастся 
     тк у ссылок более высокий приоритет! */
-    color: inherit;
+  color: inherit;
+}
+
+p {
+  margin: 0;
 }
 /* задаем средние значения шрифта для всего макета. Подключим шрифт макета. Смотрим какой шрифт в макете - наводим на текст - inspect - Font */
 /* далее идем в fonts google.com - Inter - Regular 400 - Bold 700 и смотрим на макет слева, там указаны шрифты и толщины */
 /* берем <link> из сложенного в фонте копируем и вставляем в index.html меджу "css/normalize.css"> и "css/style.css"> такое подключение называется
 подключение шрифтов через cdn (шрифты с ближайшего сервера. Далее копируем в фонте CSS rules to specify families -> font-family и ставим в body */
-body{
-    font-family: 'Inter', sans-serif;
-    /* далее прописываем то что в фикме справа в Typography */
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    color: #131313;
+body {
+  font-family: "Inter", sans-serif;
+  /* далее прописываем то что в фикме справа в Typography */
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #131313;
 }
 
-.container{
-    /* писать статич ширину нельзя width: 1200px;, поэтому пишем + добавим 20px для padding: 0 10px по 10 с кажд стороны */
-    max-width: 1220px;
-    /* пишем отступы для контента внутри контейнера */
-    padding: 0 10px;
-    /* ставим по центру */
-    margin: 0 auto;
+.container {
+  /* писать статич ширину нельзя width: 1200px;, поэтому пишем + добавим 20px для padding: 0 10px по 10 с кажд стороны */
+  max-width: 1220px;
+  /* пишем отступы для контента внутри контейнера */
+  padding: 0 10px;
+  /* ставим по центру */
+  margin: 0 auto;
 }
 /* у браузера все равно есть преднастроенные мрджины и падинги смотрим файл нормалайз css! 
 и подкл его в html ОН должен подключаться самым ПЕРВЫМ! */
 /* далее расставляем заголовки в нужном порядке */
-.header__inner{
-    /* поставит liсправа от логотипа */
-    display: flex;
-    /* отправит li в правый верхний угол */
-    justify-content: space-between;
-    /* для li выравниваем их по центру(отлепляем от верха страницы  */
-    align-items: center;
+.header__inner {
+  /* поставит liсправа от логотипа */
+  display: flex;
+  /* отправит li в правый верхний угол */
+  justify-content: space-between;
+  /* для li выравниваем их по центру(отлепляем от верха страницы  */
+  align-items: center;
 }
 /* обрабатываем меню из 3-х li */
-.menu{
-    /* отступ справа 70рх */
-    margin-right: 70px;
+.menu {
+  /* отступ справа 70рх */
+  margin-right: 70px;
 }
 /* далее стилизуем menu__list содержимое ul + т.к. у нас еще будут на странице ul пишем в начале общий ul вверху странцы*/
-.menu__list{
-/* расставляем их друг за другом */
-    display: flex;
+.menu__list {
+  /* расставляем их друг за другом */
+  display: flex;
 }
 
 /* для li  нужно еще задать 10рх для расстояния между лишками с помощью "c .menu__item"*/
 /* + означает соседний селектор -> оно ищет .menu__item + ищет его соседа .menu__item и только ему задает padding-left: 10px; */
 /* рпостыми словами это будет обращение к кадому .menu__item, КРОМЕ ПЕРВОГО! */
-.menu__item + .menu__item{
-/* нужно еще задать 10рх для расстояния между лишками */
-padding-left: 10px;
+.menu__item + .menu__item {
+  /* нужно еще задать 10рх для расстояния между лишками */
+  padding-left: 10px;
 }
 /* для ссылок a */
-.menu__link{
-/* в макете все ссылки написаны капсом, меняем на регистр на капс */
-    text-transform: uppercase;
-    /* 1)задаем паддинги-отступы слева и справа 0-сверху 20px слева и справа*/
-    padding: 0 20px;
-    /* 2)перепишем чтобы все линки занимали всю высоту - смотрим в фигме отступы верх вниз 42рх(но зададим 43) от черной картинки и запишем */
-    padding: 43px 20px;
-    /* делаем плавность при наведении */
-    transition: all .3s;
+.menu__link {
+  /* в макете все ссылки написаны капсом, меняем на регистр на капс */
+  text-transform: uppercase;
+  /* 1)задаем паддинги-отступы слева и справа 0-сверху 20px слева и справа*/
+  padding: 0 20px;
+  /* 2)перепишем чтобы все линки занимали всю высоту - смотрим в фигме отступы верх вниз 42рх(но зададим 43) от черной картинки и запишем */
+  padding: 43px 20px;
+  /* делаем плавность при наведении */
+  transition: all 0.3s;
 }
 /* деоаем ховер при наведении чтобы менялся цвет */
-.menu__link:hover{
-    /* при наведении черный наш */
-    background-color: #131313;
-    /* а сам цвет белый */
-    color: #fff
+.menu__link:hover {
+  /* при наведении черный наш */
+  background-color: #131313;
+  /* а сам цвет белый */
+  color: #fff;
 }
 /* часть 2 Пишу нумерованные комментарии в CSS */
 /* 1)задаем расстояние от верха (хеддера) и низа бллока (след блок) bike: сверху 100 по бокам 0 снизу 150 */
-.bike{
-    padding: 100px 0 150px;
+.bike {
+  padding: 100px 0 0px;
 }
 /* 2)далее bike__inner, в нем наши 2 колонки находятся левая и правая с велосипедом*/
-.bike__inner{
-    display: flex;
-    /* 3)растягиваем по углам контент */
-    justify-content: space-between;
+.bike__inner {
+  display: flex;
+  /* 3)растягиваем по углам контент */
+  justify-content: space-between;
 }
 /* 4)создали класс колонке со слайдером в html bike__column-slider что бы опираясь на него выравнять от него левую колонку */
-.bike__column-slider{
-    /* 5) 630px т.к. ширина картинки = width: 630px; */
-    flex-basis: 630px;
-    /* 6) смотрим отступ слева от картинки 31px(на видео 30px) указываем его */
-    margin-left: 30px;
-    /* шаг 29) из за flex-basis: 630px; нам нужно указать максимальную ширину тк слайдер это свойство перебивает!*/
-    max-width: 630px;
+.bike__column-slider {
+  /* 5) 630px т.к. ширина картинки = width: 630px; */
+  flex-basis: 630px;
+  /* 6) смотрим отступ слева от картинки 31px(на видео 30px) указываем его */
+  margin-left: 30px;
+  /* шаг 29) из за flex-basis: 630px; нам нужно указать максимальную ширину тк слайдер это свойство перебивает!*/
+  max-width: 630px;
 }
 /* 7) после задания отступов от правой стабильной колонки работаем с левой колонкой */
-.bike__title{
-    /* 8) смотрим колонку в фигме inspect-> H0 и задаем такой же */
-    font-weight: 700;
-    font-size: 64px;
-    line-height: 77px;
-    /* 9) далее смотрим марджин/отступ вниз 5 пикс. Пишем m0-0-5 */
-    margin: 60px 0 5px;
-    /* 10) мемряем треугольником отступ верхний/марджин. Берем за основу высоту картинки и измеряем отступ до начала текста 79px 
+.bike__title {
+  /* 8) смотрим колонку в фигме inspect-> H0 и задаем такой же */
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 77px;
+  /* 9) далее смотрим марджин/отступ вниз 5 пикс. Пишем m0-0-5 */
+  margin: 60px 0 5px;
+  /* 10) мемряем треугольником отступ верхний/марджин. Берем за основу высоту картинки и измеряем отступ до начала текста 79px 
     (в видео 60px) изменяем на m60-0-5*/
 }
 /* 11) далее идет подзаголовок bike__subtitle */
-.bike__subtitle{
-    /* 12) задаем нижний отступ до текста 60пикс */
-    margin: 0 0 60px;
-    /* 13) задаем цвет и фонтсайз и толщину шрифта*/
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 39px;
-    color: #6F6F6F;
+.bike__subtitle {
+  /* 12) задаем нижний отступ до текста 60пикс */
+  margin: 0 0 60px;
+  /* 13) задаем цвет и фонтсайз и толщину шрифта*/
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 39px;
+  color: #6f6f6f;
 }
-.bike__text{
-    /* 14) смотрим нижний отступ 20пикс.margin-bottom добаил и вниз 20пикс. Цвет и шрифт общий, который мы на бади указывали.
+.bike__text {
+  /* 14) смотрим нижний отступ 20пикс.margin-bottom добаил и вниз 20пикс. Цвет и шрифт общий, который мы на бади указывали.
     добавим еще ширину 420пикс как в фигме во вкладке inspect-> width: 420px; */
-    margin-bottom: 20px;
-    max-width: 420px;
+  margin-bottom: 20px;
+  max-width: 420px;
 }
 /* 15) делаем ссылку  */
-.bike__link{
-    /* 16)смотрим в фигме отступ от текста ввех 80 и пишем 80 (несмотря на то что указали 20 в ike__text 14 шаг)
+.bike__link {
+  /* 16)смотрим в фигме отступ от текста ввех 80 и пишем 80 (несмотря на то что указали 20 в ike__text 14 шаг)
     тк есть свойство схлопывания марджинов */
-    margin-top: 80px;
-    /* 17)пишем дисплей инлайн блок тк по умолчанию ссылки строчные и что бы к ним применялись наши правила нужно написать так */
-    display: inline-block;
-    /* 18) устанавливаем бэкграунд колор и сам цвет букв белый*/
-    background-color: #131313;
-    color: #fff;
-    /* 19) отступы сверху/снизу 28 по бокам 81 */
-    padding: 28px 81px;
-    /* 20) устанавливаем для текста апперкейс */
-    text-transform: uppercase;
-    /* 21) копируем стили текста с фигмы */
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: 1.1em;
+  margin-top: 80px;
+  /* 17)пишем дисплей инлайн блок тк по умолчанию ссылки строчные и что бы к ним применялись наши правила нужно написать так */
+  display: inline-block;
+  /* 18) устанавливаем бэкграунд колор и сам цвет букв белый*/
+  background-color: #131313;
+  color: #fff;
+  /* 19) отступы сверху/снизу 28 по бокам 81 */
+  /* padding: 28px 81px; */
+  /* переделываем паддинги как в нижней кнопке Заказать */
+  padding: 28px 71px 28px 81px;
+  /* 20) устанавливаем для текста апперкейс */
+  text-transform: uppercase;
+  /* 21) копируем стили текста с фигмы */
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 1.1em;
+  transition: all .3s;
+}
+
+.bike__link:hover{
+    background-color: #ff4040;
 }
 /* 22) слайдер никто не пишет его в ручную!Это всегда плагин на JS/jquery. slick - https://kenwheeler.github.io/slick/ */
 /* 23) слайдер подключается либо путем добавления файла либо через CDN как мы подключали шрифты
 jquery - https://developers.google.com/speed/l. Идем в html и добавляем ссылку перед закрывающимся тегом </body> */
 
 /* 30) обращаемся к slick-dots -> заходим в инспект кода и наводим на дотсы. Но слайдера будет 2: 1 в bike-slider, 2 в другой секции */
-.bike-slider .slick-dots{
-    /* 33) пишем right: 0; для помещения дотсов в правый верхний угол */
-    right: 0;
-    /* 34) отодвигаем дотсы ниже на слайдере на 50пикс вниз */
-    top: 50px;
+.bike-slider .slick-dots {
+  /* 33) пишем right: 0; для помещения дотсов в правый верхний угол */
+  right: 0;
+  /* 34) отодвигаем дотсы ниже на слайдере на 50пикс вниз */
+  top: 50px;
 }
 
-.slick-dots{
-    /* 31) пишем позишн абсолют для размещения в нужное место */
-    position: absolute;
-    /* 32) пишем top 0 унификация для всех слайдеров что бы дотсы были в самом правом верхнем углу без отступов(в видео он удалил их
+.slick-dots {
+  /* 31) пишем позишн абсолют для размещения в нужное место */
+  position: absolute;
+  /* 32) пишем top 0 унификация для всех слайдеров что бы дотсы были в самом правом верхнем углу без отступов(в видео он удалил их
     тк установили расстояние/отступ  в 50пикс от верха слайтера top: 50px;*/
-    /* top: 0; */
+  /* top: 0; */
 }
 /* 35 шаг задаем расстояние 10px между дотсами для всех двух дотсов */
-.slick-dots li + li{
-    padding-top: 10px;
+.slick-dots li + li {
+  padding-top: 10px;
 }
 /* 36 шаг обращаемся к баттонам (смотрели их в инспекте кода F12 при наведении там есть тег <button> */
-.slick-dots button{
-    /* 37 шаг убираем цифры с кнопок и смотрим свойства дотсов в фигме заводим так же как там */
-    font-size: 0;
-    padding: 0;
-    border: none;
-    background-color: #131313;
-    width: 2px;
-    height: 25px;
-    border-radius: 7px;
-    /* 38 шаг делам курсор в форме руки при наведении на дотс */
-    cursor: pointer;
-    /* 40 шаг задатим задержку для срабатывания для плавности */
-    transition: all .3s;
+.slick-dots button {
+  /* 37 шаг убираем цифры с кнопок и смотрим свойства дотсов в фигме заводим так же как там */
+  font-size: 0;
+  padding: 0;
+  border: none;
+  background-color: #131313;
+  width: 2px;
+  height: 25px;
+  border-radius: 7px;
+  /* 38 шаг делам курсор в форме руки при наведении на дотс */
+  cursor: pointer;
+  /* 40 шаг задатим задержку для срабатывания для плавности */
+  transition: all 0.3s;
 }
 /* 39 шаг за активный дотс отвечает li  с классом slick-active сделаем при активном дотсе красный дотс #ff4040 
 и так же зададим это для ховера-это когда наводишь мышку на объект*/
 .slick-dots button:hover,
-.slick-active button{
-    background-color: #ff4040;   
+.slick-active button {
+  background-color: #ff4040;
 }
 
 /* 43 шаг делаем футе для картинок байка bike__list */
-.bike__list{
-    /* 48 шаг зададим отступы сверху текста от низа картинки */
-    margin-top: 25px;
-    /* 44 шаг расставили элементы слева на право + расстояние между элементами space-around */
-    display: flex;
-    justify-content: space-around;
+.bike__list {
+  /* 48 шаг зададим отступы сверху текста от низа картинки */
+  margin-top: 25px;
+  /* 44 шаг расставили элементы слева на право + расстояние между элементами space-around */
+  display: flex;
+  justify-content: space-around;
 }
 /* 45 шаг задаем для bike__list-item шрифт крупный */
-.bike__list-item{
-    /* толщина */
-    /* font-weight: 700;  */
-    /* верхний регистр */
-    /* text-transform: uppercase; */
-    /* максимальная ширина 160пикс */
-    /* flex-basis: 160px; */
-    /* 47 шаг протестили в F12 и заменим на -   min-width: 160px; */
-    min-width: 160px;
-    /* text-align: center; */
-    /* 53 добавляем дисплей флекс */
-    display: flex;
-    flex-direction: column;
-    /* 54 шаг выравниваем дисплей флекс по центру */
-    align-items: center;
-    text-align: center;
-    /* 55 шаг добавляем минимальную высоту = height: 31px; + 17 + 5 свеху и 5 снизу */
-    min-height: 58px;
+.bike__list-item {
+  /* толщина */
+  /* font-weight: 700;  */
+  /* верхний регистр */
+  /* text-transform: uppercase; */
+  /* максимальная ширина 160пикс */
+  /* flex-basis: 160px; */
+  /* 47 шаг протестили в F12 и заменим на -   min-width: 160px; */
+  min-width: 160px;
+  /* text-align: center; */
+  /* 53 добавляем дисплей флекс */
+  display: flex;
+  flex-direction: column;
+  /* 54 шаг выравниваем дисплей флекс по центру */
+  align-items: center;
+  text-align: center;
+  /* 55 шаг добавляем минимальную высоту = height: 31px; + 17 + 5 свеху и 5 снизу */
+  min-height: 58px;
 }
 /* 50 шаг стилизуем вновь добавленные классы */
-.bike__list-num{
-    /* 52 переносим значение из bike__list-item */
-     /* толщина */
-     font-weight: 700; 
-     /* верхний регистр */
-     text-transform: uppercase;
+.bike__list-num {
+  /* 52 переносим значение из bike__list-item */
+  /* толщина */
+  font-weight: 700;
+  /* верхний регистр */
+  text-transform: uppercase;
 }
 /* 46 шаг обращаемся к спанам  смотрим что написано в фигме + добавим  display: block;*/
 /* 51 шаг из за добавления класса комментим спан и переделываем его на bike__list-text - ранее бывшего bike__list-item span */
@@ -247,12 +266,338 @@ jquery - https://developers.google.com/speed/l. Идем в html и добавл
     line-height: 15px;
     text-transform: lowercase;
 } */
-.bike__list-text{
-    /* display: block; */
-    font-weight: 400;
+.bike__list-text {
+  /* display: block; */
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  /* text-transform: lowercase; */
+  /* 56 шаг далее тексту пишем мрджин сверху авто и снизу авто а по бокам 0 */
+  margin: auto 0;
+}
+/* отступ снизу от контейнера 150 пикс */
+.info {
+    padding-top: 150px;
+    /* переделываем для плавной прокрутки */
+    /* margin-bottom: 150px; */
+    margin-bottom: 50px;
+}
+/* переместим текст справа от картинки */
+.info__inner {
+  display: flex;
+}
+/* отступ от картинки справа 60 пикс */
+.info__img {
+  margin-right: 60px;
+  /* ширина картинки */
+  flex-basis: 570px;
+  /* добавить свойство для картинки что бы если вставят другую картинку ничего не поплыло */
+  object-fit: cover;
+}
+
+.info__list {
+  /* ширина текста справа 490пикс - смотрим в фигме выделив текст */
+  flex-basis: 490px;
+}
+/* у всех info__item отступ вниз друг от друга 50 пикс записываем коротко для всех info__item */
+.info__item + .info__item {
+  padding-top: 50px;
+}
+
+.info__item-title {
+  /* берем инфо из фигмы фонт сайз ширина текста и аперкейс + отступы вниз от текста */
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.info__item-text {
+  /* указываем максимальнуюширину текста 450пикс из фигмы взять выделив текст всех info__item-text*/
+  max-width: 450px;
+  /* у меня почему то у текста были 14пикс марджины сверху и снизу пришлось убрать что б текст прибился к низу картинки*/
+  /* margin-top: 0;
+    margin-bottom: 0; */
+}
+
+/* отступ снизу от контейнера 150 пикс */
+.characteristics {
+    /* допишем паддинг топ 100 это те 100 которые мы забрали от 150 пх у info */
+    padding-top: 100px;
+    margin-bottom: 150px;
+}
+/* добавим отступ вниз от информации 40пикс - как на макете фигмы */
+.characteristics__head {
+  margin-bottom: 0 0 40px;
+  /* добавляем стили для слова  Характеристики из фигмы*/
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: uppercase;
+}
+/* переместим текст справа от картинки */
+.characteristics__inner {
+  display: flex;
+}
+
+/* выравнивание картинки по центру (а то ее растягивает сильно) */
+.characteristics__img {
+  align-self: center;
+}
+
+/* берем в фигме блок с описанием смотрим сколько там макс ширина (570пикс) - устанавливаем макс ширину */
+.characteristics__items {
+  flex-basis: 570px;
+  /* задаем отступ справа 60пикс от списка до картинки как в фигме  */
+  margin-right: 60px;
+}
+
+/* задаем для всех ul отступы снизу 30 пикс */
+.characteristics__list + .characteristics__list {
+  padding-top: 30px;
+}
+/* стилизуем заголовки текста смотрим в фигме */
+.characteristics__title {
+  padding: 2px 0 3px;
+  text-transform: uppercase;
+  background-color: #131313;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* стилизуем текст characteristics__line */
+.characteristics__line {
+  /* пишем ему дисплей флекс */
+  display: flex;
+  /* отступы в 5пх между строк - смотрим в фигме */
+  padding-top: 5px;
+}
+
+/* стилизуем строки неме и дескрипшн */
+.characteristics__name {
+  /* задаем макс ширину 285пх смотрим в фигме */
+  flex-basis: 285px;
+  /* добавим отступ 25пх что б  в случае увеличения текста в нейме перенос текста происходил до поцелуя с дескрипшином */
+  padding-right: 25px;
+}
+/* задаем макс ширину 285пх смотрим в фигме */
+.characteristics__descr {
+  flex-basis: 285px;
+}
+/* у параграфов по умолчанию есть сверху и снизу марджин! <p></p> (тянется из файла нормалайз css
+  поэтому в начале файла  для параграфа зададим марджин = 0 ""
+  p{
+    margin: 0;
+}
+  */
+/* отступ вниз от слайдера вниз 50 пх */
+.slider {
+  margin-bottom: 50px;
+}
+.slider__items .slick-dots {
+  /* cтавим дотсы в левом верхнем углу */
+  top: 0;
+  left: 0;
+}
+
+.slider__item {
+  /* отступ картинки от дотса 50 пх */
+  padding-left: 50px;
+}
+
+/* задаем отступы до футера */
+.price {
+  margin-bottom: 100px;
+}
+
+/* задается относительно этого блокаposition: absolute; блока .form__bike */
+.price__inner{
+    position: relative;
+}
+
+/* определили ширину колонки форм в 420пх по полоске нижнего подчеркивания */
+.form {
+  max-width: 420px;
+}
+
+.form__title {
+  /* отступ вниз 40пх */
+  margin-bottom: 40px;
+  /* и вставляем стили из фигмы */
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: uppercase;
+}
+/* смотрим ширину текста 300пх и отступ вниз до ввода имени 30пх */
+.form__text {
+  max-width: 300px;
+  margin-bottom: 30px;
+}
+
+.form__input-name,
+.form__input-phone {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #131313;
+    /* внутренний отступ 10пх до полоски */
+    padding-bottom: 10px;
+    /* внешний отступ от полоски до телефона 20пх (от инпута до инпута)*/
+    margin-bottom: 20px;
+    /* отключаем обводку при вводе */
+    outline: none;
+}
+/* для стилизации имени и телефона пишем им ::placeholder */
+.form__input-name::placeholder,
+.form__input-phone::placeholder{
+    /* задаем цвет и прозрачность с фигмы */
+    color: #6F6F6F;
+    opacity: 0.5;
+}
+
+.form__input-text{
+    color: #6F6F6F;
+    opacity: 0.5;
+    margin-bottom: 10px;
+}
+
+/* вся обертка наших лейбелов радиокнопки расположатся друг за другом а не сверху вниз*/
+.form__label-box{
+    display: flex;
+    /* задаем расстояние вниз до кнопки заказать 50пх */
+    margin-bottom: 50px;
+}
+
+/* задаем расстояние между кнопками */
+.form__label + .form__label{
+    margin-left: 23px;
+}
+.form__input-radio{
+/* прячем радиобаттоны Но без исользования Дисплей нан*/
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    /* добавляем отсутствие взаимодействия */
+    clip: rect(0 0 0 0);
+}
+
+/* обращение если form__input-radio:checked то иогда его сосед .form__bike*/
+.form__input-radio:checked + .form__bike{
+    display: block;
+}
+
+.form__bike-price{
+    font-size: 32px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    width: 220px;
+    height: 100px;
+    /* для того что бы то что ниже заработало нужно обернуть каждую цену в span идем и переделываем html*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #FF4040;
+    /* добавляем овал на цену путем экспериментов в отладке добавли к цене border-radius: 50%; и примерно вышло */
+    border-radius: 50%;
+    /* вытягиваем немного цену влево от велосипеда таким свойством */
+    transform: translateX(-50%);
+}
+/* делаем вторую завитушку на цене Как псевдо элемент копируем части относящиеся к кругу этому*/
+.form__bike-price::after{
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 100px;
+    border: 1px solid #FF4040;
+    /* добавляем овал на цену путем экспериментов в отладке добавли к цене border-radius: 50%; и примерно вышло */
+    border-radius: 50%;
+    /* для того что бы сместить круги друг относительно друга нужно задать отсуп */
+    top: 12px;
+    left: 0;
+}
+
+.form__bike{
+    /* сначала уберем все велики чтоб не мешали */
+    display: none;
+    /* размещаем форм байк в правой части position: absolute; относительно price__inner*/
+    position: absolute;
+    right: 0;
+    /* что бы стоял по центру напишем топ 0 */
+    top: 0;
+}
+/* стилизация кнопок */
+.form__radio-style{
+    width: 80px;
+    height: 12px;
+    border-radius: 30px;
+}
+
+.form__radio-style--grey{
+    background: #6F6F6F;
+}
+.form__radio-style--white{
+    background: #FFFFFF;
+    border: 1px solid #6F6F6F;
+}
+.form__radio-style--red{
+    background: #FF4040;
+}
+/* стилизация кнопки берем все с фигмы */
+.form__btn{
+    background-color: #131313;
+    padding: 28px 71px 28px 81px;
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 1.1em;
+    cursor: pointer;
+    /* делаем задержку в 3 сек */
+    transition: all .3s;
+}
+/* меняем бекграунд на красный при наведении */
+.form__btn:hover{
+    background-color: #ff4040;
+}
+
+.footer{
+    background-color: #131313;
+}
+.footer__inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+.footer__link{
+    color: #fff;
+    text-decoration: underline;
     font-size: 12px;
     line-height: 15px;
-    /* text-transform: lowercase; */
-    /* 56 шаг далее тексту пишем мрджин сверху авто и снизу авто а по бокам 0 */
-    margin: auto 0;
+}
+/* задаем расстояние между картинками соц сетямей */
+.footer__social-link + .footer__social-link{
+    margin-left: 26px;
+}
+
+.footer__contacts{
+    color: #fff;
+    font-size: 12px;
+    line-height: 15px;
+}
+/* выравниваем телефон и емэйл друг под друна */
+.footer__contacts-link{
+    display: flex;
+    /* выравниваем их по центру */
+    align-items: center;
+}
+/* делаем отступы от картинок */
+.footer__contacts-link + .footer__contacts-link{
+    margin-top: 10px;
+}
+.footer__contacts-img{
+    /* отступы текста от картинок 10пх */
+    margin-right: 10px;
 }
